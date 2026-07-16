@@ -1,10 +1,10 @@
 import asyncio
 import logging
-from app.config.settings import settings
 
 logger = logging.getLogger(__name__)
 
 _monitor_task: asyncio.Task = None
+
 
 async def monitor_loop():
     try:
@@ -18,9 +18,11 @@ async def monitor_loop():
     except Exception as e:
         logger.error(f"Monitor error: {e}")
 
+
 def start_monitor():
     global _monitor_task
     _monitor_task = asyncio.create_task(monitor_loop())
+
 
 async def stop_monitor():
     if _monitor_task:

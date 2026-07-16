@@ -1,7 +1,10 @@
-from sqlalchemy import Column, Integer, String, DateTime, JSON
-from sqlalchemy.sql import func
-from app.config.database import Base
 from datetime import datetime
+
+from sqlalchemy import JSON, Column, DateTime, Integer, String
+from sqlalchemy.sql import func
+
+from app.config.database import Base
+
 
 class FusedStateSample(Base):
     __tablename__ = "fused_state_samples"

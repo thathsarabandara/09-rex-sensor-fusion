@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from typing import Optional
+
 
 class Settings(BaseSettings):
     APP_NAME: str = "rex-sensor-fusion"
@@ -66,5 +66,6 @@ class Settings(BaseSettings):
     FUSED_SAMPLE_RETENTION_DAYS: int = 30
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+
 
 settings = Settings()

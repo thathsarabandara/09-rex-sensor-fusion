@@ -1,11 +1,13 @@
 import asyncio
 import json
 import logging
+
 from aiokafka import AIOKafkaConsumer
+from prometheus_client import Counter
+
 from app.config.settings import settings
 from app.schemas.sensor_snapshot import SensorSnapshot
 from app.services.fusion_service import fusion_service
-from prometheus_client import Counter
 
 logger = logging.getLogger(__name__)
 
@@ -14,6 +16,7 @@ snapshots_invalid = Counter("rex_fusion_snapshots_invalid_total", "Invalid snaps
 
 _consumer_task: asyncio.Task = None
 _consumer: AIOKafkaConsumer = None
+
 
 async def consume():
     global _consumer
@@ -24,11 +27,11 @@ async def consume():
             client_id=f"{settings.KAFKA_CLIENT_ID}-consumer",
             group_id=settings.KAFKA_CONSUMER_GROUP,
             value_deserializer=lambda v: json.loads(v.decode("utf-8")),
-            auto_offset_reset="latest"
+            auto_offset_reset="latest",
         )
         await _consumer.start()
         logger.info(f"Started Kafka consumer on topic {settings.KAFKA_INPUT_TOPIC}")
-        
+
         async for msg in _consumer:
             snapshots_received.inc()
             try:
@@ -46,9 +49,11 @@ async def consume():
             await _consumer.stop()
             logger.info("Kafka consumer stopped")
 
+
 async def start_consumer():
     global _consumer_task
     _consumer_task = asyncio.create_task(consume())
+
 
 async def stop_consumer():
     if _consumer_task:

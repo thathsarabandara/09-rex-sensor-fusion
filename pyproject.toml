@@ -4,6 +4,11 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B"]
+ignore = ["B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"migrations/env.py" = ["F401"]
 
 [tool.mypy]
 python_version = "3.12"

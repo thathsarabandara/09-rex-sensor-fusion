@@ -1,6 +1,8 @@
-from pydantic import BaseModel
-from typing import Optional
 from enum import Enum
+from typing import Optional
+
+from pydantic import BaseModel
+
 
 class HealthState(str, Enum):
     HEALTHY = "HEALTHY"
@@ -8,6 +10,7 @@ class HealthState(str, Enum):
     STALE = "STALE"
     FAILED = "FAILED"
     UNAVAILABLE = "UNAVAILABLE"
+
 
 class SensorHealth(BaseModel):
     sensor: str

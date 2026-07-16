@@ -1,8 +1,10 @@
-from typing import Dict, List
-from fastapi import WebSocket
 import logging
+from typing import Dict, List
+
+from fastapi import WebSocket
 
 logger = logging.getLogger(__name__)
+
 
 class WebSocketService:
     def __init__(self):
@@ -33,8 +35,9 @@ class WebSocketService:
                 except Exception as e:
                     logger.debug(f"Failed to send websocket message: {e}")
                     dead_connections.append(connection)
-            
+
             for dead in dead_connections:
                 self.disconnect(robot_id, dead)
+
 
 websocket_service = WebSocketService()

@@ -1,9 +1,12 @@
 import json
 import logging
+
 from aiokafka import AIOKafkaProducer
+
 from app.config.settings import settings
 
 logger = logging.getLogger(__name__)
+
 
 class KafkaService:
     def __init__(self):
@@ -47,5 +50,6 @@ class KafkaService:
             await self.producer.send_and_wait(topic, event_data)
         except Exception as e:
             logger.error(f"Failed to publish event {event_type}: {e}")
+
 
 kafka_service = KafkaService()

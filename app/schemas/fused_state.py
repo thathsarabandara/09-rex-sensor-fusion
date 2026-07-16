@@ -1,6 +1,8 @@
-from pydantic import BaseModel
-from typing import Dict
 from datetime import datetime
+from typing import Dict
+
+from pydantic import BaseModel
+
 
 class OrientationState(BaseModel):
     heading_deg: float
@@ -8,10 +10,12 @@ class OrientationState(BaseModel):
     roll_deg: float
     confidence: float
 
+
 class MotionState(BaseModel):
     state: str
     confidence: float
     possible_stall: bool
+
 
 class ObstacleState(BaseModel):
     detected: bool
@@ -20,19 +24,23 @@ class ObstacleState(BaseModel):
     risk_level: str
     confidence: float
 
+
 class LineStateOut(BaseModel):
     detected: bool
     position: str
     normalized_error: float
     confidence: float
 
+
 class TiltState(BaseModel):
     unsafe: bool
     confidence: float
 
+
 class ImpactState(BaseModel):
     possible: bool
     confidence: float
+
 
 class FusedState(BaseModel):
     robot_id: str

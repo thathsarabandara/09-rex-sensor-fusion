@@ -1,5 +1,7 @@
 import logging
+
 from app.config.settings import settings
+
 
 def setup_logging():
     logging.basicConfig(

@@ -1,5 +1,6 @@
 from app.config.settings import settings
 
+
 def estimate_obstacle_risk(distance: float) -> str:
     if distance > settings.OBSTACLE_LOW_DISTANCE_CM:
         return "NONE"

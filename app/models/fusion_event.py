@@ -1,7 +1,10 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, JSON, text
-from sqlalchemy.sql import func
-from app.config.database import Base
 from datetime import datetime
+
+from sqlalchemy import JSON, Column, DateTime, Float, Integer, String
+from sqlalchemy.sql import func
+
+from app.config.database import Base
+
 
 class FusionEvent(Base):
     __tablename__ = "fusion_events"
