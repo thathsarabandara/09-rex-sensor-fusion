@@ -1,7 +1,14 @@
 fastapi
-uvicorn
+uvicorn[standard]
 pydantic
 pydantic-settings
-pytest
+numpy
 sqlalchemy
+alembic
 pymysql
+asyncmy
+redis
+aiokafka
+httpx
+PyJWT
+prometheus-client
