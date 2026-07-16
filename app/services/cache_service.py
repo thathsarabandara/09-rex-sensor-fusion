@@ -1,4 +1,5 @@
 import json
+from typing import Optional
 
 from app.config.redis import get_redis
 
@@ -16,7 +17,7 @@ class CacheService:
         await redis.set(key, sequence, ex=86400)  # Keep for 1 day
 
     async def get_sensor_samples(
-        self, robot_id: str, sensor_type: str, direction: str = None
+        self, robot_id: str, sensor_type: str, direction: Optional[str] = None
     ) -> list:
         redis = await get_redis()
         key = f"rex:fusion:samples:{robot_id}:{sensor_type}"
@@ -26,7 +27,7 @@ class CacheService:
         return json.loads(data) if data else []
 
     async def save_sensor_samples(
-        self, robot_id: str, sensor_type: str, samples: list, direction: str = None
+        self, robot_id: str, sensor_type: str, samples: list, direction: Optional[str] = None
     ):
         redis = await get_redis()
         key = f"rex:fusion:samples:{robot_id}:{sensor_type}"
@@ -34,7 +35,7 @@ class CacheService:
             key += f":{direction}"
         await redis.set(key, json.dumps(samples), ex=30)
 
-    async def get_latest_fused_state(self, robot_id: str) -> dict:
+    async def get_latest_fused_state(self, robot_id: str) -> Optional[dict]:
         redis = await get_redis()
         key = f"rex:fusion:latest:{robot_id}"
         data = await redis.get(key)

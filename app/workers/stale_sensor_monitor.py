@@ -1,9 +1,10 @@
 import asyncio
+from typing import Optional
 import logging
 
 logger = logging.getLogger(__name__)
 
-_monitor_task: asyncio.Task = None
+_monitor_task: Optional[asyncio.Task] = None
 
 
 async def monitor_loop():

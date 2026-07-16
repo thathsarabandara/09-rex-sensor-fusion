@@ -1,4 +1,5 @@
 import asyncio
+from typing import Optional
 import json
 import logging
 
@@ -14,7 +15,7 @@ logger = logging.getLogger(__name__)
 snapshots_received = Counter("rex_fusion_snapshots_received_total", "Total snapshots received")
 snapshots_invalid = Counter("rex_fusion_snapshots_invalid_total", "Invalid snapshots received")
 
-_consumer_task: asyncio.Task = None
+_consumer_task: Optional[asyncio.Task] = None
 _consumer: AIOKafkaConsumer = None
 
 

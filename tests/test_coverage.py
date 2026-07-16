@@ -168,7 +168,7 @@ async def test_ws_coverage():
             pass
 
     mw = MockWS()
-    await w.connect("r1", mw)
+    await w.connect("r1", mw)  # type: ignore
     await w.broadcast_state("r1", {})
 
     class MockWSFail:
@@ -176,11 +176,11 @@ async def test_ws_coverage():
             raise Exception("fail")
 
     mwf = MockWSFail()
-    await w.connect("r1", mwf)
+    await w.connect("r1", mwf)  # type: ignore
     await w.broadcast_state("r1", {})
 
-    w.disconnect("r1", mw)
-    w.disconnect("r1", mwf)
+    w.disconnect("r1", mw)  # type: ignore
+    w.disconnect("r1", mwf)  # type: ignore
 
 
 @pytest.mark.asyncio
@@ -191,7 +191,7 @@ async def test_routes_coverage(monkeypatch):
             m.scalars().all.return_value = []
             return m
 
-    await fusion.get_fusion_events("r1", db=MockDB())
+    await fusion.get_fusion_events("r1", db=MockDB())  # type: ignore
 
     try:
         await fusion.get_latest_fused_state("r1")

@@ -1,9 +1,10 @@
 from datetime import datetime, timezone
+from typing import Optional
 
 from app.config.settings import settings
 
 
-def calculate_freshness(last_seen: datetime, current_time: datetime = None) -> str:
+def calculate_freshness(last_seen: datetime, current_time: Optional[datetime] = None) -> str:
     if current_time is None:
         current_time = datetime.now(timezone.utc)
 

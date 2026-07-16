@@ -60,7 +60,7 @@ async def test_process_snapshot(monkeypatch):
         occurred_at=datetime.now(timezone.utc),
         robot_id="r1",
         sequence=1,
-        sensors={
+        sensors={  # type: ignore
             "ultrasonic": {"distance_cm": 15.0, "scan_angle_deg": 90},
             "imu": {
                 "acceleration_x": 0.0,
@@ -80,7 +80,7 @@ async def test_process_snapshot(monkeypatch):
                 "right_outer": False,
             },
         },
-        robot_state={
+        robot_state={  # type: ignore
             "mode": "MANUAL",
             "commanded_direction": "FORWARD",
             "commanded_speed": 50,

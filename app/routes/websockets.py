@@ -30,7 +30,7 @@ def verify_ws_token(token: str) -> Optional[str]:
 
 
 @router.websocket("")
-async def fusion_websocket(websocket: WebSocket, robot_id: str, token: str = None):
+async def fusion_websocket(websocket: WebSocket, robot_id: str, token: Optional[str] = None):
     # Depending on how the client sends token.
     # Usually in query param `?token=...` for websockets.
     if not token:

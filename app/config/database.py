@@ -1,5 +1,5 @@
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
+from sqlalchemy.orm import declarative_base
 
 from app.config.settings import settings
 
@@ -10,7 +10,7 @@ if settings.APP_ENV == "testing" and "test" not in DATABASE_URL:
     DATABASE_URL = "sqlite+aiosqlite:///:memory:"
 
 engine = create_async_engine(DATABASE_URL, echo=False)
-AsyncSessionLocal = sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
+AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 
 Base = declarative_base()
 
