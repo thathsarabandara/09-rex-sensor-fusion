@@ -10,7 +10,12 @@ logger = logging.getLogger(__name__)
 
 class EventService:
     async def publish_and_store_event(
-        self, robot_id: str, event_type: str, severity: str, confidence: float, data: Optional[dict] = None
+        self,
+        robot_id: str,
+        event_type: str,
+        severity: str,
+        confidence: float,
+        data: Optional[dict] = None,
     ):
         logger.info(f"Emitting {event_type} for robot {robot_id}")
 
